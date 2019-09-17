@@ -26,10 +26,10 @@ node {
     stage('Deploying') {
       echo 'Deploying to AWS...'
       dir ('./') {
-        withAWS(credentials: 'aws-credentials', region: 'eu-central-1') {
-            sh "aws eks --region us-east-1 update-kubeconfig --name CapstoneEKS-VUUZkwHTDVPa"
+        withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+            sh "aws eks --region us-east-1 update-kubeconfig --name CapstoneEKS-q3qNmLa4gjsJ"
             sh "kubectl apply -f aws/aws-auth-cm.yaml"
-            sh "kubectl set image deployments/capstone-storeapp capstone-storeapp=${registry}:latest"
+            sh "kubectl set image deployments/capstone-storeapp capstone-storeapp=${registry}:v1"
             sh "kubectl apply -f aws/capstone-app-deployment.yml"
             sh "kubectl get nodes"
             sh "kubectl get pods"
