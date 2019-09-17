@@ -115,7 +115,7 @@ Resources:
     Properties:
       AssociatePublicIpAddress: 'true'
       IamInstanceProfile: !Ref InstanceProfile
-      ImageId: ami-01ffee931e45bb6bf
+      ImageId: ami-07d0cf3af28718ef8
       InstanceType: m3.medium
       KeyName: !Ref SshKey
       SecurityGroups:
