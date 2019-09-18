@@ -18,6 +18,7 @@ node {
             sh 'for S in $(find / -type f -name script.sh); do echo "==$S"; cat $S;done'
         sh "image: hadolint/hadolint:latest"
         sh "hadolint Dockerfile"
+      }
     }
     stage('Building image') {
 	    echo 'Building Docker image...'
