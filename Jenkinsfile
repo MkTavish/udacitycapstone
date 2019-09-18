@@ -17,7 +17,7 @@ node {
     }
     stage('Building image') {
 	    echo 'Building Docker image...'
-      withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+      withCredentials([usernamePassword(credentialsId: 'mktavish', passwordVariable: 'Oyewola1.', usernameVariable: 'mktavish')]) {
 	     	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
 	     	sh "docker build -t ${registry} ."
 	     	sh "docker tag ${registry} ${registry}"
