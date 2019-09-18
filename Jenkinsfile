@@ -19,7 +19,7 @@ node {
 	    echo 'Building Docker image...'
       withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'Oyewola1.', usernameVariable: 'mktavish')]) {
 	     	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-	     	sh "docker build -t ${mktavish/capstone-project:v1} ."
+	     	sh "docker build -t ${mktavish/capstone-project}"
 	     	sh "docker tag ${mktavish/capstone-project:v1} ${mktavish/capstone-project:v1}"
 	     	sh "docker push ${mktavish/capstone-project:v1}"
       }
