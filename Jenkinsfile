@@ -12,7 +12,6 @@ node {
     }
     stage("Linting") {
       echo 'Linting...'
-      default:
     - step:
         image: hadolint/hadolint:latest
         script:
