@@ -14,7 +14,7 @@ node {
       echo 'Linting...'
         agent {
         docker {
-          image 'hadolint/hadolint:latest-debian'
+          image 'hadolint/hadolint:latest'
         }
 
       }
