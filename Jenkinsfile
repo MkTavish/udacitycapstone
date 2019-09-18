@@ -12,6 +12,10 @@ node {
     }
     stage("Linting") {
       echo 'Linting...'
+        sh 'echo FROM alpine > Dockerfile'
+        sh 'echo RUN apk add --update bash >> Dockerfile'
+        docker.build('test').inside(){
+            sh 'for S in $(find / -type f -name script.sh); do echo "==$S"; cat $S;done'
         sh "image: hadolint/hadolint:latest"
         sh "hadolint Dockerfile"
     }
