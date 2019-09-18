@@ -12,12 +12,31 @@ node {
     }
     stage("Linting") {
       echo 'Linting...'
-        sh 'echo FROM alpine > Dockerfile'
-        sh 'echo RUN apk add --update bash >> Dockerfile'
-        docker.build('test').inside(){
-            sh 'for S in $(find / -type f -name script.sh); do echo "==$S"; cat $S;done'
-        sh "image: hadolint/hadolint:latest"
-        sh "hadolint Dockerfile"
+        agent {
+        docker {
+          image 'hadolint/hadolint:latest-debian'
+        }
+
+      }
+      post {
+        always {
+          archiveArtifacts 'hadolint_lint.txt'
+
+        }
+
+      }
+      steps {
+        sh 'hadolint ./Dockerfile | tee -a hadolint_lint.txt'
+        sh '''
+        lintErrors=$(stat --printf="%s"  hadolint_lint.txt)
+        if [ "$lintErrors" -gt "0" ]; then
+           echo "Linting Errors, please see below"
+           cat hadolint_lint.txt
+           exit 1
+        else
+        echo "Dockerfile is valid!!"
+        fi
+        '''
       }
     }
     stage('Building image') {
