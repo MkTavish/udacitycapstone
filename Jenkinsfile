@@ -17,11 +17,11 @@ node {
     }
     stage('Building image') {
 	    echo 'Building Docker image...'
-      withCredentials([usernamePassword(credentialsId: 'mktavish', passwordVariable: 'Oyewola1.', usernameVariable: 'mktavish')]) {
+      withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'Oyewola1.', usernameVariable: 'mktavish')]) {
 	     	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-	     	sh "docker build -t ${registry} ."
-	     	sh "docker tag ${registry} ${registry}"
-	     	sh "docker push ${registry}"
+	     	sh "docker build -t ${mktavish/capstone-project:v1} ."
+	     	sh "docker tag ${mktavish/capstone-project:v1} ${mktavish/capstone-project:v1}"
+	     	sh "docker push ${mktavish/capstone-project:v1}"
       }
     }
     stage('Deploying') {
@@ -30,7 +30,7 @@ node {
         withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
             sh "aws eks --region us-east-1 update-kubeconfig --name CapstoneEKS-q3qNmLa4gjsJ"
             sh "kubectl apply -f aws/aws-auth-cm.yaml"
-            sh "kubectl set image deployments/capstone-storeapp capstone-storeapp=${registry}:v1"
+            sh "kubectl set image deployments/capstone-storeapp capstone-storeapp=${mktavish/capstone-project}:v1"
             sh "kubectl apply -f aws/capstone-app-deployment.yml"
             sh "kubectl get nodes"
             sh "kubectl get pods"
