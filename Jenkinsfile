@@ -12,10 +12,8 @@ node {
     }
     stage("Linting") {
       echo 'Linting...'
-    - step:
-        image: hadolint/hadolint:latest
-        script:
-          - hadolint Dockerfile
+        sh "image: hadolint/hadolint:latest"
+        sh "hadolint Dockerfile"
     }
     stage('Building image') {
 	    echo 'Building Docker image...'
