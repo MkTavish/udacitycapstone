@@ -19,8 +19,8 @@ node {
 	    echo 'Building Docker image...'
       steps {
 	     	sh "docker login"
-	     	sh "docker build . -t mktavish/capstone-project:v1"
-	     	sh "docker push mktavish/capstone-project:v1"
+	     	sh "docker build . -t mktavish/capstone-project:v2"
+	     	sh "docker push mktavish/capstone-project:v2"
       }
     }
     stage('Deploying') {
