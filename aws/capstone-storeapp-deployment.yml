@@ -21,7 +21,7 @@ spec:
         app: capstone-storeapp
     spec:
       containers:
-      - image: mktavish/udacity-capstone-project:v1
+      - image: mktavish/udacity-capstone-project
         imagePullPolicy: Always
         name: capstone-storeapp
         ports:
