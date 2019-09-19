@@ -17,11 +17,7 @@ node {
     }
     stage('Building image') {
 	    echo 'Building Docker image...'
-	      withCredentials([usernamePassword(passwordVariable: 'Oyewola1.', usernameVariable: 'mktavish')]) {
-	     	sh "docker login -u ${env.usernameVariable} -p ${env.passwordVariable}"
 	     	sh "docker build . -t mktavish/capstone-project:v2"
-	     	sh "docker push mktavish/capstone-project:v2"
-	     }
     }
     stage('Deploying') {
       echo 'Deploying to AWS...'
