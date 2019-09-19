@@ -17,7 +17,7 @@ node {
     }
     stage('Building image') {
 	    echo 'Building Docker image...'
-	      sh "sudo su"
+	      sh "sudo su -S"
 	     	sh "docker login -u mktavish --password-stdin Oyewola1."
 	     	sh "docker build . -t mktavish/capstone-project:v2"
 	     	sh "docker push mktavish/capstone-project:v2"
