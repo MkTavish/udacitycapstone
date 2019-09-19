@@ -25,8 +25,8 @@ node {
         withAWS(credentials: 'aws-eks', region: 'us-east-1', serverUrl: 'https://35F1FCB6DE7E415B2958ED21E4242350.gr7.us-east-1.eks.amazonaws.com') {
            
             
-            sh "kubectl set image deployments/capstone-storeapp capstone-storeapp=${mktavish/capstone-project}:v2"
-            sh "kubectl apply -f aws/capstone-app-deployment.yml"
+            sh "kubectl set image deployments/capstone-storeapp capstone-storeapp=${mktavish/capstone-project:v2}:v2"
+            sh "kubectl apply -f aws/capstone-storeapp-deployment.yml"
             sh "kubectl get nodes"
             sh "kubectl get pods"
             sh "aws cloudformation update-stack --stack-name udacity-capstone-nodes --template-body file://aws/worker_nodes.yml --parameters file://aws/worker_nodes_parameters.json --capabilities CAPABILITY_IAM"
