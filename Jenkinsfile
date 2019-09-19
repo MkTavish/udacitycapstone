@@ -17,7 +17,7 @@ node {
     }
     stage('Building image') {
 	    echo 'Building Docker image...'
-	     	sh "docker build . -t mktavish/capstone-project:v2"
+	     	sh "sudo docker build . -t mktavish/capstone-project:v2"
     }
     stage('Deploying') {
       echo 'Deploying to AWS...'
