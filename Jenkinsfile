@@ -17,10 +17,11 @@ node {
     }
     stage('Building image') {
 	    echo 'Building Docker image...'
-	      sh "sudo -i"
-	     	sh "docker login -u mktavish --password-stdin Oyewola1."
+	      withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'Oyewola1.', usernameVariable: 'mktavish')]) {
+	     	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
 	     	sh "docker build . -t mktavish/capstone-project:v2"
 	     	sh "docker push mktavish/capstone-project:v2"
+	     }
     }
     stage('Deploying') {
       echo 'Deploying to AWS...'
